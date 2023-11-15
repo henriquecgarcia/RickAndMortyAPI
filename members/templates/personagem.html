@@ -1,0 +1,85 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}{{ personagem.name }}{% endblock %}
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+
+{% endblock head %}
+{% block content %}
+	<div class="center">
+		<img src="{{ personagem.image }}" alt="{{ personagem.name }}" class="bordered-circle{% if personagem.status == "Dead" %}
+				char-dead
+			{% endif %}
+		">
+		<div class="char-info">
+			<div class="info-section">
+				<p class="info-title">Nome:</p>
+				<p class="info-data">{{ personagem.name }}</p>
+			</div>
+			<div class="info-section">
+				<p class="info-title">Status:</p>
+				<p class="info-data {% if personagem.status == "Alive" %}
+					col-verde
+				{% elif personagem.status == "Dead" %}
+					col-vermelho
+				{% else %}
+					col-cinza
+				{% endif %}">{{ personagem.status }}</p>
+			</div>
+			<div class="info-section">
+				<p class="info-title">Gênero:</p>
+				<p class="info-data"><span class="{% if personagem.gender == "Male" %}
+					col-azul
+				{% elif personagem.gender == "Female" %}
+					col-pink
+				{% else %}
+					italic
+				{% endif %}">{{ personagem.gender }}</a></p>
+			</div>
+			<div class="info-section">
+				<p class="info-title">Espécie:</p>
+				<p class="info-data">{{ personagem.species }}</p>
+			</div>
+			<div class="info-section">
+				<p class="info-title">Planeta de origem:</p>
+				<p class="info-data">
+					{% if origin.id %}
+						<a href="{{ origin.url }}" class="origin-link">{{ origin.name }}</a>
+					{% else %}
+						{{origin.name}}
+					{% endif %}
+				</p>
+			</div>
+			<div class="info-section">
+				<p class="info-title">Localização atual:</p>
+				<p class="info-data">
+					{% if location.id %}
+						<a href="{{ location.url }}" class="origin-link">{{ location.name }}</a>
+					{% else %}
+						{{location.name}}
+					{% endif %}
+				</p>
+			</div>
+			<div class="info-section">
+				<p class="info-title">Episódios:</p>
+				<div class="info-data dropdown">
+					<div class="dropdown-trigger">
+						Episódios - {{ episodes|length }}
+					</div>
+					<div class="dropdown-content">
+						<ul class="info-list">
+							{% for episode in episodes %}
+								<li><a href="/episode/{{ episode.id }}" class="underline">{{ episode.episode }} - {{ episode.name }}</a></li><br>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="info-section">
+				<p class="info-title">Criado em:</p>
+				<p class="info-data">{{ personagem.created }}</p>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'js/dropdown.js' %}"></script>
+{% endblock %}

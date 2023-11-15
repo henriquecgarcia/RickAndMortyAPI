@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Todos os episódios{% endblock %}
+{% block content %}
+	<h1 dlass="block center">Todos os episódios</h1>
+	<div class="display-current hidden-mobile">
+		Página <span id="display-page">1</span>/<span id="display-total">1</span>
+	</div>
+	<input type="text" id="char-search" placeholder="Search for an episode">
+	<div class="display-control">
+		<div class="display-prev">
+			<button class="display-btn" >
+				&larr; Previous
+			</button>
+		</div>
+		<div class="display-next">
+			<button class="display-btn" >
+				Next &rarr;
+			</button>
+		</div>
+	</div>
+	<div id="display-chars"></div>
+	<div class="display-control">
+		<div class="display-prev">
+			<button class="display-btn" >
+				&larr; Previous
+			</button>
+		</div>
+		<div class="display-next">
+			<button class="display-btn" >
+				Next &rarr;
+			</button>
+		</div>
+	</div>
+
+	<script src="{% static 'js/all_episodes.js' %}"></script>
+{% endblock %}

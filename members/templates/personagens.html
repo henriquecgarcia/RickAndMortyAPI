@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block title %}Todos os personagens{% endblock title %}
+{% block content %}
+	<div class="display-current hidden-mobile">
+		Página <span id="display-page">1</span>/<span id="display-total">1</span>
+	</div>
+	<input type="text" id="char-search" placeholder="Search for a character">
+	<div class="display-control">
+		<div class="display-prev">
+			<button class="display-btn" >
+				&larr; Previous
+			</button>
+		</div>
+		<div class="display-next">
+			<button class="display-btn" >
+				Next &rarr;
+			</button>
+		</div>
+	</div>
+	<div id="display-chars"></div>
+	<div class="display-control">
+		<div class="display-prev">
+			<button class="display-btn" >
+				&larr; Previous
+			</button>
+		</div>
+		<div class="display-next">
+			<button class="display-btn" >
+				Next &rarr;
+			</button>
+		</div>
+	</div>
+
+	<script src="{% static 'js/all_char.js' %}"></script>
+{% endblock content %}
